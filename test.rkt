@@ -2,17 +2,27 @@
 (require file/md5)
 (require rnrs/arithmetic/bitwise-6)
 
-(bitwise-ior 4 4)
-(define time/5 (floor ( / (current-seconds)5)))
+(define (replace l n w)
+  (cond
+    [(= n 1) (cons w (rest l))]
+    [else (cons (first l) (replace (rest l) (- n 1) w))]))
 
-(bitwise-bit-field 256 1 8)
+(define (foo l i j)
+  (local
+    (
+     (define new-l (replace l i (list i j)))
+     (define new-i (if (= j 1) (- i 1) i))
+     (define new-j (if (= j 1) 8 (- j 1)))
+     )
+    (if (and ( = i 1) (= j 1))
+        new-l
+     (foo new-l new-i new-j))))
+(define (add-to l n w)
+  (cond
+    [(= n 1) (cons (+ w (first l)) (rest l))]
+    [else (cons (first l) (add-to (rest l) (- n 1) w))]))
 
-(define one (bitwise-bit-field time/5 24 29))
-(define two (bitwise-bit-field time/5 16 24))
-(define three (bitwise-bit-field time/5 8 16))
-(define four (bitwise-bit-field time/5 0 8))
-(bytes one two three four)
-(md5 (format "1212312~a~a" "哈哈"  "yes"))
-(md5 "admin" )
-(md5 "adminisitor" )
-(integer->char 10)
+(add-to '(1 2 3 4 5 6) 4 2)
+(foo '(1 2 3 4) 4 8)
+(replace '(1 2 3 4 5 6) 3 6)
+(md5 "admin")
