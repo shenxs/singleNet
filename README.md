@@ -12,6 +12,20 @@ ok , maybe you are looking for it now .unfortunately, it may not work for you.
 
 - linux Mac Windows :请百度或google,`Drracket`,下载相应平台的`Drracket`安装包
 
+## 现有功能
+- 计算出账号
+- 将账号密码交给路由器
+
+## ToDo
+
+- 心跳功能(你可以用mac先登录闪讯15分钟以上,就可以不用心跳包了(据说虚拟机也可以),或者伪装成mac的闪讯客户端)
+- 适配不同的路由器(可能需要大家自己去改代码了)
+
+## 原理
+------
+//To be Continue
+------
+
 # MIT
 Copyright © 2015 richard
 
