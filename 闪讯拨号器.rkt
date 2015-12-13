@@ -7,7 +7,7 @@
 ;;必要的头文件
 
 (define 账号 "15381089274@GDPF.XY")
-(define 密码 "128596")
+(define 密码 "653928")
 (define RAD "singlenet01")
 ;;简化定义
 (define >> bitwise-arithmetic-shift-right)
@@ -50,13 +50,13 @@
 (define tmp2 (bitwise-bit-field time/5 8 16))
 (define tmp3 (bitwise-bit-field time/5 0 8))
 
-(define tmp_list (list tmp0 tmp1 tmp2 tmp3))
+(define tmp_list (list tmp0 tmp1 tmp2 tmp3 ))
 (define tmp_str (list->string (map integer->char tmp_list)))
 
-(define bm (string-append tmp_str  realUserName RAD ))
+(define bm (string-append  tmp_str  realUserName RAD ))
 (define pin3 (bytes->string/utf-8 (subbytes (md5 bm) 0 2)))
 
-
+(display pin3)
 (define zero (first timehased))
 (define one (second timehased))
 (define two (third timehased))
@@ -81,8 +81,9 @@
 
 
 (define encode
-  (string-append pin1 pin2 pin3 账号))
+  (string-append pin1 pin2 pin3 账号 ))
 
+(display encode)
 
 (define 拨号字段 (string->url (format "http://192.168.1.1/userRpm/PPPoECfgRpm.htm?wan=0&wantype=2&acc=~a&psw=~a&confirm=~a&SecType=0&sta_ip=0.0.0.0&sta_mask=0.0.0.0&linktype=4&waittime2=0&Connect=%C1%AC+%BD%D3 HTTP/1.1"  encode 密码 密码 )))
 
@@ -104,4 +105,4 @@
   (拨号 账号 密码))
 
 (run)
-;(url->json "http://lp.music.ttpod.com/lrc/down?artist=周杰伦&title=双节棍")           
+(url->json "http://lp.music.ttpod.com/lrc/down?artist=周杰伦&title=星")
