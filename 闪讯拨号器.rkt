@@ -14,14 +14,12 @@
 (define << bitwise-arithmetic-shift-left)
 (define & bitwise-and)
 (define ior bitwise-ior)
-
 (define pin1 (list->string (list (integer->char 13) (integer->char 10))));pin的前两位
 (define realUserName (substring 账号 0 11));取出手机号码
 (define unixStamp (current-seconds));;当前时间
 (define time/5 (floor (/ unixStamp 5)))
 (define (url->json url)
   (call/input-url (string->url url) get-pure-port read-json))
-
 ;;l ->list n->第n个 w-> what 变成什么
 ;将链表l中的 第n个元素变成n+w
 (define (add-to l n w)
@@ -42,26 +40,19 @@
     (if (and ( =  i 1) (= j 1))
         new-l
      (循环替换 new-l new-i new-j))))
-
 (define timehased (循环替换 timehash 4 8))
-
 (define tmp0 (bitwise-bit-field time/5 24 29))
 (define tmp1 (bitwise-bit-field time/5 16 24))
 (define tmp2 (bitwise-bit-field time/5 8 16))
 (define tmp3 (bitwise-bit-field time/5 0 8))
-
 (define tmp_list (list tmp0 tmp1 tmp2 tmp3 ))
 (define tmp_str (list->string (map integer->char tmp_list)))
-
 (define bm (string-append  tmp_str  realUserName RAD ))
 (define pin3 (bytes->string/utf-8 (subbytes (md5 bm) 0 2)))
-
-(display pin3)
 (define zero (first timehased))
 (define one (second timehased))
 (define two (third timehased))
 (define three (fourth timehased))
-
 (define pin27-0 (& (>> zero 2) 63))
 (define pin27-1 (ior (&(<<(& zero 3) 4) 255) (&(>> one 4) 15)))
 (define pin27-2 (ior (&(<<(& one 15) 2) 255) (&(>> two 6) 3)))
@@ -76,17 +67,10 @@
            (if (>= (+(first l) 32) 64) (+(first l) 33) (+(first l) 32))
            (调整pin (rest l))
            )]))
-
 (define pin2 (list->string (map integer->char (调整pin pin27))))
-
-
 (define encode
   (string-append pin1 pin2 pin3 账号 ))
-
-(display encode)
-
 (define 拨号字段 (string->url (format "http://192.168.1.1/userRpm/PPPoECfgRpm.htm?wan=0&wantype=2&acc=~a&psw=~a&confirm=~a&SecType=0&sta_ip=0.0.0.0&sta_mask=0.0.0.0&linktype=4&waittime2=0&Connect=%C1%AC+%BD%D3 HTTP/1.1"  encode 密码 密码 )))
-
 (define (拨号 账号 密码)
   (port->string (get-pure-port
                  拨号字段
@@ -103,6 +87,6 @@
                 #:redirections 0)))
 (define (run)
   (拨号 账号 密码))
-
-(run)
-(url->json "http://lp.music.ttpod.com/lrc/down?artist=周杰伦&title=星")
+(display encode)
+;(run)
+;(url->json "http://lp.music.ttpod.com/lrc/down?artist=周杰伦&title=星晴")
