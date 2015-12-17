@@ -1,5 +1,7 @@
-# singleNet
+# singleNet(还在写,有时候会成功拨号,有时候不行)
 ----
+
+
 ## 须知
 ok , maybe you are looking for it now .unfortunately, it may not work for you.
 - 你需要自己更具你的路由器更改一下这个脚本.
