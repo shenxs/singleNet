@@ -20,6 +20,9 @@
 (define time/5 (floor (/ unixStamp 5)))
 (define (url->json url)
   (call/input-url (string->url url) get-pure-port read-json))
+
+(define (url->string url)
+  (call/input-url (string->url url) get-pure-port port->string))
 ;;l ->list n->第n个 w-> what 变成什么
 ;将链表l中的 第n个元素变成n+w
 (define (add-to l n w)
@@ -89,4 +92,6 @@
   (拨号 账号 密码))
 (display encode)
 ;(run)
-;(url->json "http://lp.music.ttpod.com/lrc/down?artist=周杰伦&title=星晴")
+(display "\n")
+;(url->string "http://ipinfo.io/ip")
+(url->json "http://www.trackip.net/ip?json")
