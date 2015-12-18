@@ -5,7 +5,7 @@ singleNet(之前由于字符编码导致pin3错误已经修复)
 
 ## 须知
 ok , maybe you are looking for it now .unfortunately, it may not work for you.
-- 你需要自己更具你的路由器更改一下这个脚本.
+- 你需要根据你的路由器更改一下这个脚本.
 - 如果你需要任何帮助,我很乐意和你讨论
 - 拒绝未经许可,将其用于商业行为
 - 没有任何担保
