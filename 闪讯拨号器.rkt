@@ -7,7 +7,7 @@
 ;;必要的头文件
 
 (define 账号 "15381089274@GDPF.XY")
-(define 密码 "911891")
+(define 密码 "767832")
 (define RAD "singlenet01")
 ;;简化定义
 (define >> bitwise-arithmetic-shift-right)
@@ -92,7 +92,7 @@
 (define (run)
   (拨号 账号 密码))
 
-;(run)
+(run)
 ;(url->string "http://ipinfo.io/ip")
 #| (url->json "http://www.trackip.net/ip?json") |#
 (displayln encode)
