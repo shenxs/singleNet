@@ -2,12 +2,36 @@
 (require net/url
          json
          file/md5
+         racket/gui
          file/sha1)
 (require rnrs/arithmetic/bitwise-6)
 ;;必要的头文件
+; Make a frame by instantiating the frame% class
+(define frame (new frame% [label "Example"]))
+; Make a static text message in the frame
+(define msg (new message% [parent frame]
+                          [label "请输入闪讯密码然后按拨号"]))
+;建立一个输入框
+(define txt (new text-field%
+                 [label "闪讯密码"]
+                 [parent frame]
+                 ))
+; Make a button in the frame
+(new button% [parent frame]
+             [label "拨号"]
+             ; Callback procedure for a button click:
+             [callback (lambda (button event)
+                         (and
+                           (run (send (send txt get-editor) get-text))
+                           (send msg set-label (url->string "http://ipinfo.io/ip"))))])
+; Show the frame by calling its show method
+(send frame show #t)
+
 
 (define 账号 "15381089274@GDPF.XY")
-(define 密码 "767832")
+;(define 密码 password)
+;(define 密码 (send (send txt get-editor) get-text))
+
 (define RAD "singlenet01")
 ;;简化定义
 (define >> bitwise-arithmetic-shift-right)
@@ -74,8 +98,12 @@
 
 (define encode
   (string-append pin1 pin2 pin3 账号 ))
-(define 拨号字段 (string->url (format "http://192.168.1.1/userRpm/PPPoECfgRpm.htm?wan=0&wantype=2&acc=~a&psw=~a&confirm=~a&SecType=0&sta_ip=0.0.0.0&sta_mask=0.0.0.0&linktype=4&waittime2=0&Connect=%C1%AC+%BD%D3 HTTP/1.1"  encode 密码 密码 )))
-(define (拨号 账号 密码)
+
+
+(define (run pass)
+  (local (
+          (define 拨号字段 (string->url (format "http://192.168.1.1/userRpm/PPPoECfgRpm.htm?wan=0&wantype=2&acc=~a&psw=~a&confirm=~a&SecType=0&sta_ip=0.0.0.0&sta_mask=0.0.0.0&linktype=4&waittime2=0&Connect=%C1%AC+%BD%D3 HTTP/1.1"  encode pass pass )))
+          (define (拨号 账号 密码)
   (port->string (get-pure-port
                   拨号字段
                   '(
@@ -89,10 +117,7 @@
                     "Accept-Language: zh-CN,zh;q=0.8,en;q=0.6"
                     )
                   #:redirections 0)))
-(define (run)
-  (拨号 账号 密码))
-
-(run)
-;(url->string "http://ipinfo.io/ip")
+          )
+    (拨号 账号 pass)))
+;; (display (url->string "http://ipinfo.io/ip") )
 #| (url->json "http://www.trackip.net/ip?json") |#
-(displayln encode)
