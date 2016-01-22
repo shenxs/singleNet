@@ -3,30 +3,31 @@
          json
          file/md5
          racket/gui
-         file/sha1)
-(require rnrs/arithmetic/bitwise-6)
+         file/sha1
+         rnrs/arithmetic/bitwise-6)
 ;;必要的头文件
 ; Make a frame by instantiating the frame% class
-(define frame (new frame% [label "Example"]))
+(define frame (new frame% [label "闪讯拨号器"]))
 ; Make a static text message in the frame
 (define msg (new message% [parent frame]
-                          [label "请输入闪讯密码然后按拨号"]))
+                 [label "请输入闪讯密码
+                        \n然后按拨号(点一下就好)
+                        \n如果成功会显示本机ip"]))
 ;建立一个输入框
 (define txt (new text-field%
                  [label "闪讯密码"]
                  [parent frame]
                  ))
 ; Make a button in the frame
-(new button% [parent frame]
-             [label "拨号"]
-             ; Callback procedure for a button click:
-             [callback (lambda (button event)
-                         (and
-                           (run (send (send txt get-editor) get-text))
-                           (send msg set-label (url->string "http://ipinfo.io/ip"))))])
+(define btn (new button% [parent frame]
+                 [label "拨号"]
+                 ; Callback procedure for a button click:
+                 [callback (lambda (button event)
+                             (and
+                               (run (send (send txt get-editor) get-text))
+                               (send msg set-label (url->string "http://ipinfo.io/ip"))))]))
 ; Show the frame by calling its show method
 (send frame show #t)
-
 
 (define 账号 "15381089274@GDPF.XY")
 ;(define 密码 password)
@@ -104,19 +105,19 @@
   (local (
           (define 拨号字段 (string->url (format "http://192.168.1.1/userRpm/PPPoECfgRpm.htm?wan=0&wantype=2&acc=~a&psw=~a&confirm=~a&SecType=0&sta_ip=0.0.0.0&sta_mask=0.0.0.0&linktype=4&waittime2=0&Connect=%C1%AC+%BD%D3 HTTP/1.1"  encode pass pass )))
           (define (拨号 账号 密码)
-  (port->string (get-pure-port
-                  拨号字段
-                  '(
-                    "Host: 192.168.1.1"
-                    "Authorization: Basic YWRtaW46MTk5NjAxMDE="
-                    "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
-                    "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36"
-                    "Referer: http://192.168.1.1/userRpm/PPPoECfgRpm.htm?wan=0&wantype=2&acc=~a&psw=~a&confirm=~a&SecType=0&sta_ip=0.0.0.0&sta_mask=0.0.0.0&linktype=4&waittime2=0&Disconnect=%B6%CF+%CF%DF"
-                    "Accept-Encoding: gzip,deflate,sdch"
-                    "Cookie: Authorization=Basic YWRtaW46MTk5NjAxMDE="
-                    "Accept-Language: zh-CN,zh;q=0.8,en;q=0.6"
-                    )
-                  #:redirections 0)))
+            (port->string (get-pure-port
+                            拨号字段
+                            '(
+                              "Host: 192.168.1.1"
+                              "Authorization: Basic YWRtaW46MTk5NjAxMDE="
+                              "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
+                              "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36"
+                              "Referer: http://192.168.1.1/userRpm/PPPoECfgRpm.htm?wan=0&wantype=2&acc=~a&psw=~a&confirm=~a&SecType=0&sta_ip=0.0.0.0&sta_mask=0.0.0.0&linktype=4&waittime2=0&Disconnect=%B6%CF+%CF%DF"
+                              "Accept-Encoding: gzip,deflate,sdch"
+                              "Cookie: Authorization=Basic YWRtaW46MTk5NjAxMDE="
+                              "Accept-Language: zh-CN,zh;q=0.8,en;q=0.6"
+                              )
+                            #:redirections 0)))
           )
     (拨号 账号 pass)))
 ;; (display (url->string "http://ipinfo.io/ip") )
