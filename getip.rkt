@@ -18,4 +18,3 @@
 
 (provide getip)
 
-(getip)

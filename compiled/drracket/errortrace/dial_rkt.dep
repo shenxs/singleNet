@@ -1,0 +1,1 @@
+("6.4" ("ec9f6d4331b7f300210cd00a43efd34a3ebe06fc" . "cfd2cabddd6c171bc6d1df6efec8e7a8cf1045ce") #"/home/richard/playground/singleNet/encode.rkt" (collects #"errortrace" #"errortrace-key.rkt") (collects #"net" #"url.rkt") (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt"))
