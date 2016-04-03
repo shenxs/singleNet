@@ -6,10 +6,11 @@
 ;(define 密码 password)
 ;(define 密码 (send (send txt get-editor) get-text))
 
-
-(define (dial pass)
+;;original account and password
+;==>void dial
+(define (dial acc pass)
   (local (
-          (define 拨号字段 (string->url (format "http://192.168.1.1/userRpm/PPPoECfgRpm.htm?wan=0&wantype=2&acc=~a&psw=~a&confirm=~a&SecType=0&sta_ip=0.0.0.0&sta_mask=0.0.0.0&linktype=4&waittime2=0&Connect=%C1%AC+%BD%D3 HTTP/1.1"  (encode 账号) pass pass )))
+          (define 拨号字段 (string->url (format "http://192.168.1.1/userRpm/PPPoECfgRpm.htm?wan=0&wantype=2&acc=~a&psw=~a&confirm=~a&SecType=0&sta_ip=0.0.0.0&sta_mask=0.0.0.0&linktype=4&waittime2=0&Connect=%C1%AC+%BD%D3 HTTP/1.1"  (encode acc) pass pass )))
           (define (拨号 账号 密码)
             (port->string (get-pure-port
                             拨号字段
@@ -27,6 +28,6 @@
                               )
                             #:redirections 0)))
           )
-    (拨号 账号 pass)))
+    (拨号 acc pass)))
 
 (provide dial)
