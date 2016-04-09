@@ -6,6 +6,7 @@
   "getip.rkt"
   "read_save_config.rkt")
 
+;从文件读取配置文件
 (read-config)
 
 ;;必要的头文件
