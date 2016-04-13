@@ -8,7 +8,6 @@
 
 ;从文件读取配置文件
 (read-config)
-
 ;;必要的头文件
 ; Make a frame by instantiating the frame% class
 (define frame (new frame% [label "闪讯拨号器"]))
@@ -43,8 +42,9 @@
                                              #f
                                              #t)))
                                     (if (good-format? account password)
-                                      (with-handlers ([exn? (lambda (x) (send msg set-label "账号或密码格式错误"))])
-                                                     ((dial account password) (send msg set-label (getip))))
+                                      (with-handlers ([exn:fail:network? (lambda (x) (send msg set-label "未能获得当前ip地址"))])
+                                                     ((dial account password)
+                                                      (send msg set-label (getip))))
                                       (send msg set-label "账号或密码格式错误"))))]))
 (define save-btn (new button%
                       [parent btn-area]
