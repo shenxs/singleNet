@@ -21,7 +21,6 @@ ok , maybe you are looking for it now .unfortunately, it may not work for you.
 - 计算出账号
 - 将账号密码交给路由器
 - 可以有GUI了
-- 可以用于不同的路由器,不用再自己去改包头了
 
 ## 如果你想要使用它
 - 你至少可以看懂一点源代码
@@ -29,6 +28,7 @@ ok , maybe you are looking for it now .unfortunately, it may not work for you.
 
 ## ToDo
 
+- 适配不同的浏览器,由于我手头上只有一款路由器,各个路由器需要的拨号的请求都不尽相同所以不太可能适配不同的路由器
 - 心跳功能(你可以用mac先登录闪讯15分钟以上,就可以不用心跳包了(据说虚拟机也可以),或者伪装成mac的闪讯客户端)
 - 亲测高贵的mac用户是心跳的终极杀手
 
