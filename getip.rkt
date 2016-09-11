@@ -13,7 +13,7 @@
 ;如果没有网络连接则显示"无网络连接"
 (define (getip)
   (with-handlers
-    ([exn? (λ (x) "无网络连接,未能获取当前的ip和地理位置")])
+    ([exn? (λ (x) "貌似没连上")])
     (url->string "http://ip.6655.com/ip.aspx?area=1")))
 
 (provide getip)
