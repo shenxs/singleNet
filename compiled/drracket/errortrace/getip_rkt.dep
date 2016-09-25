@@ -1,1 +1,0 @@
-("6.6" ("14bb3878fe70660986b1b8265fa214867b8f221e" . "579a54de0ee72599ad963c4492bcef013492466c") (collects #"errortrace" #"errortrace-key.rkt") (collects #"net" #"url.rkt") (collects #"parsack" #"main.rkt") (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt"))

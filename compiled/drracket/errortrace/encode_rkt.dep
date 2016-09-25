@@ -1,1 +1,0 @@
-("6.6" ("de90978dc87d06b799737be7cccea4b1ff93a348" . "94ed82f088e641959da6484e73383462f2c7fce4") (collects #"errortrace" #"errortrace-key.rkt") (collects #"file" #"md5.rkt") (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt") (collects #"rnrs" #"arithmetic" #"bitwise-6.rkt"))

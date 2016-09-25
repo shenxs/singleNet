@@ -1,1 +1,0 @@
-("6.6" ("6193036d461375f36b6a53c012a70a95cc17b93c" . "fc8db3e4ec9f1bdcf1ef6628fefcafe3798d83b2") (collects #"2htdp" #"batch-io.rkt") (collects #"errortrace" #"errortrace-key.rkt") (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt"))
