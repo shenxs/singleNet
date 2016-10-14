@@ -15,7 +15,12 @@ ok , maybe you are looking for it now .unfortunately, it may not work for you.
 
 ## 运行环境
 
-- linux Mac Windows :请百度或google,`Drracket`,下载相应平台的`Drracket`安装包
+- linux Mac Windows :请google,`Drracket`,下载相应平台的`Drracket`安装包(百度得到的安装包版本偏旧,6.6及以上吧)
+- 安装好DRracket之后直接运行代码可能会报错,请根据相应的报错安装racket依赖,可以直接用drracket安装,喜欢命令行的可以用raco命令来安装相应的依赖
+- 我使用的路由器型号为TPLINK WR742N 7.0 00000000,软件版本：1.0.0 Build 150126 Rel.53299n. 理论上支持挺多类似的水星和TP的路由器的
+
+
+
 
 ## 现有功能
 - 计算出账号
