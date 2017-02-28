@@ -59,8 +59,7 @@
                #t)))
     (if (good-format? account password)
         (with-handlers ([exn:fail:network? (lambda (x) (send msg set-label "未能获得当前ip地址"))])
-          (begin
-           (thread-send dial-thread (list account password  rt-pass))
+          ((thread-send dial-thread (list account password  rt-pass))
            (sleep 2)
            (send msg set-label (getip))))
         (send msg set-label "账号或密码格式错误"))))
